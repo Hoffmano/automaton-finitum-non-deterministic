@@ -13,14 +13,10 @@ def main(input_file):
     transitions = get_transitions(input_file,afn)
     test_strings = get_test_strings(input_file)
 
-    if (i == 3):
-      result = run_test_string(afn['initial_state'], transitions, [1, 1, 1, 1, 2], accepted_states)
+    for test_string in test_strings:
+      result = run_test_string(afn['initial_state'], transitions, test_string, accepted_states)
       print(result, end =" ")
-
-    # for test_string in test_strings:
-    #   result = run_test_string(afn['initial_state'], transitions, test_string, accepted_states)
-    #   print(result, end =" ")
-    # print()
+    print()
 
 def run_test_string(current_state, transitions, test_string, accepted_states):
   for i in range(len(transitions)):
@@ -38,6 +34,7 @@ def run_test_string(current_state, transitions, test_string, accepted_states):
       if (result == 1):
         return 1
 
+  for i in range(len(transitions)):
     if (len(test_string) == 0):
       if current_state in accepted_states:
         return 1
